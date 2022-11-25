@@ -49,14 +49,14 @@ class MainActivity : AppCompatActivity() {
 
         //dropdown work
         binding.calculateButton.setOnClickListener{
-            binding.tvResult.text=calculate().toString()
+            calculate()
         }
 
     }
 
     //calculate function
-    private fun calculate():Double {
-        val value = (binding.teConvertTo.editText?.text.toString()).toDoubleOrNull() ?: return 0.0
+    private fun calculate() {
+        val value = (binding.teConvertTo.editText?.text.toString()).toDoubleOrNull() ?: return
         var result=0.0
         when(convertFrom){
             "Kilo-Meter"->{
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 result=i.calculate(value,convertTo)
             }
         }
-        return result
+        binding.tvResult.text=result.toString()
     }
 }
 
