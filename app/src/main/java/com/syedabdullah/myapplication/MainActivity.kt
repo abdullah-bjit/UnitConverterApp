@@ -29,6 +29,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.ivConvertArrow.setOnClickListener(View.OnClickListener {
+            binding.spConvertFrom.setSelection(positionConvertTo)
+            binding.spConvertTo.setSelection(positionConverFrom)
+            calculate()
+        })
+
     }
 
     //calculate funtion
