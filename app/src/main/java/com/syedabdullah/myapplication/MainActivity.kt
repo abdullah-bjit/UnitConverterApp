@@ -18,11 +18,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //dropdown work
-        val calculate=binding.calculateButton
-        calculate.setOnClickListener{
-
-        }
         binding.spConvertFrom.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 positionConvertFrom = p2
@@ -52,10 +47,16 @@ class MainActivity : AppCompatActivity() {
             calculate()
         })
 
+        //dropdown work
+        binding.calculateButton.setOnClickListener{
+            binding.tvResult.text=calculate().toString()
+        }
+
     }
 
-    //calculate funtion
-    private fun calculate(convertFrom:String, convertTo:String, value:Double ):Double{
+    //calculate function
+    private fun calculate():Double {
+        val value = (binding.teConvertTo.editText?.text.toString()).toDoubleOrNull() ?: return 0.0
         var result=0.0
         when(convertFrom){
             "Kilo-Meter"->{
