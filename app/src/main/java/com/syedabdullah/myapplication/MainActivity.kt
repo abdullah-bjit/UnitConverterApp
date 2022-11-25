@@ -52,6 +52,8 @@ class MainActivity : AppCompatActivity() {
             binding.tvResult.text=calculate().toString()
         }
 
+
+
     }
 
     //calculate function
