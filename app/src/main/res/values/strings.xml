@@ -4,10 +4,9 @@
     <string name="convert_to">Convert to</string>
     <string name="convert_button">Calculate</string>
     <string-array name="dropDownOption">
-        <item>km</item>
-        <item>m</item>
-        <item>ft</item>
-        <item>in</item>
-        <item>cm</item>
+        <item>Kilo-Meter</item>
+        <item>Meter</item>
+        <item>Feet</item>
+        <item>Inch</item>
     </string-array>
 </resources>

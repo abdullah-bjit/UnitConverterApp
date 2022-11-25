@@ -6,9 +6,6 @@ plugins {
 android {
     namespace 'com.syedabdullah.myapplication'
     compileSdk 32
-    buildFeatures{
-        viewBinding true
-    }
     defaultConfig {
         applicationId "com.syedabdullah.myapplication"
         minSdk 21
@@ -31,6 +28,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    buildFeatures{
+        viewBinding true
     }
 }
 

@@ -16,13 +16,22 @@
         android:src="@drawable/balance_img"
         />
 
+    <TextView
+        android:id="@+id/tv_convert_from"
+        android:layout_width="match_parent"
+        android:text="@string/convert_from"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_balance_image"/>
    <Spinner
        android:id="@+id/sp_convert_from"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       android:layout_height="50dp"
        android:spinnerMode="dropdown"
+       android:entries="@array/dropDownOption"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/iv_balance_image"/>
+       app:layout_constraintTop_toBottomOf="@+id/tv_convert_from"/>
 
     <ImageView
         android:id="@+id/iv_convert_arrow"
@@ -37,18 +46,19 @@
     <Spinner
         android:id="@+id/sp_convert_to"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:spinnerMode="dropdown"
+        android:entries="@array/dropDownOption"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_convert_arrow"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tv_convert_to"
+        android:id="@+id/te_convert_to"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/convert_to"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sp_convert_to"
+        app:layout_constraintTop_toBottomOf="@+id/te_convert_to"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -66,6 +76,6 @@
         android:text="@string/convert_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_convert_to" />
+        app:layout_constraintTop_toBottomOf="@id/sp_convert_to" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
