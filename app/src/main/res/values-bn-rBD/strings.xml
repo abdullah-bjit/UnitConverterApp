@@ -6,4 +6,10 @@
     <string name="convert_from">হতে</string>
     <string name="convert_to">রূপান্তর</string>
     <string name="convert_button">হিসাব করুন</string>
+    <string-array name="dropDownOption">
+        <item>কিলো-মিটার</item>
+        <item>মিটার</item>
+        <item>ফুট</item>
+        <item>ইঞ্চি</item>
+    </string-array>
 </resources>
