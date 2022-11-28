@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ইউনিট কনভার্টার</string>
+    <string name="app_title"><u>ইউনিট কনভার্টার</u></string>
+    <string name="please_enter_your_input">অনুগ্রহ করে আপনার ইনপুট লিখুন</string>
+    <string name="convert_from">হতে</string>
+    <string name="convert_to">রূপান্তর</string>
+    <string name="convert_button">হিসাব করুন</string>
+</resources>

@@ -11,25 +11,26 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_title"
-        android:textSize="25sp"
-        android:textAlignment="center"
-        android:textStyle="bold"
+        android:layout_marginTop="16dp"
         android:padding="5dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/app_title"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_convert_from"
         android:layout_width="match_parent"
-        android:text="@string/convert_from"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
         android:layout_marginTop="20dp"
+        android:text="@string/convert_from"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/te_convert_to"/>
+        app:layout_constraintTop_toBottomOf="@+id/te_convert_to" />
 
     <RelativeLayout
         android:id="@+id/layout_convert_from"
@@ -40,8 +41,7 @@
         android:background="@drawable/spinner_background"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_convert_from"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/tv_convert_from">
 
         <Spinner
             android:id="@+id/sp_convert_from"
@@ -49,13 +49,12 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:gravity="center"
             android:layout_marginStart="5dp"
-            android:spinnerMode="dropdown"
+            android:background="@android:color/transparent"
             android:entries="@array/dropDownOption"
+            android:gravity="center"
             android:popupBackground="@color/teal_200"
-            />
+            android:spinnerMode="dropdown" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -67,36 +66,36 @@
             android:src="@drawable/spinner_down_arrow" />
 
     </RelativeLayout>
-<!--   <Spinner-->
-<!--       android:id="@+id/sp_convert_from"-->
-<!--       android:layout_width="match_parent"-->
-<!--       android:layout_height="50dp"-->
-<!--       android:spinnerMode="dropdown"-->
-<!--       android:entries="@array/dropDownOption"-->
-<!--       android:backgroundTint="@color/teal_200"-->
-<!--       app:layout_constraintStart_toStartOf="parent"-->
-<!--       app:layout_constraintTop_toBottomOf="@+id/tv_convert_from"/>-->
+    <!--   <Spinner-->
+    <!--       android:id="@+id/sp_convert_from"-->
+    <!--       android:layout_width="match_parent"-->
+    <!--       android:layout_height="50dp"-->
+    <!--       android:spinnerMode="dropdown"-->
+    <!--       android:entries="@array/dropDownOption"-->
+    <!--       android:backgroundTint="@color/teal_200"-->
+    <!--       app:layout_constraintStart_toStartOf="parent"-->
+    <!--       app:layout_constraintTop_toBottomOf="@+id/tv_convert_from"/>-->
 
     <ImageView
         android:id="@+id/iv_convert_arrow"
         android:layout_width="50dp"
         android:layout_height="70dp"
-        android:src="@drawable/ic_baseline_compare_arrows_24"
-        android:rotation="90"
         android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:rotation="90"
+        android:src="@drawable/ic_baseline_compare_arrows_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_convert_from"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_convert_from" />
 
     <TextView
         android:id="@+id/tv_convert_to"
         android:layout_width="match_parent"
-        android:text="@string/convert_to"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
         android:layout_marginTop="20dp"
+        android:text="@string/convert_to"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_convert_arrow"/>
+        app:layout_constraintTop_toBottomOf="@+id/iv_convert_arrow" />
 
     <RelativeLayout
         android:id="@+id/layout_convert_to"
@@ -107,8 +106,7 @@
         android:background="@drawable/spinner_background"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_convert_to"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/tv_convert_to">
 
         <Spinner
             android:id="@+id/sp_convert_to"
@@ -116,13 +114,12 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:gravity="center"
             android:layout_marginStart="5dp"
-            android:spinnerMode="dropdown"
+            android:background="@android:color/transparent"
             android:entries="@array/dropDownOption"
+            android:gravity="center"
             android:popupBackground="@color/teal_200"
-            />
+            android:spinnerMode="dropdown" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -135,33 +132,31 @@
 
     </RelativeLayout>
 
-<!--    <Spinner-->
-<!--        android:id="@+id/sp_convert_to"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:spinnerMode="dropdown"-->
-<!--        android:entries="@array/dropDownOption"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tv_convert_to"/>-->
+    <!--    <Spinner-->
+    <!--        android:id="@+id/sp_convert_to"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:spinnerMode="dropdown"-->
+    <!--        android:entries="@array/dropDownOption"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/tv_convert_to"/>-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/te_convert_to"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Rounded"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/please_enter_your_input"
         android:layout_marginTop="20dp"
+        android:hint="@string/please_enter_your_input"
         app:endIconMode="clear_text"
         app:endIconTint="@color/teal_200"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Rounded"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            />
+            android:inputType="numberDecimal" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -178,11 +173,10 @@
         android:id="@+id/tv_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/calculate_button"
         android:textSize="25sp"
-        tools:text="Result"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calculate_button"
+        tools:text="Result" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

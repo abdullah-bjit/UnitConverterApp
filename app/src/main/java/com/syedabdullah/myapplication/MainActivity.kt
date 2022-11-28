@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var convertFrom: String
     private lateinit var convertTo: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -41,9 +42,9 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-
+        //swaping unit
         binding.ivConvertArrow.setOnClickListener(View.OnClickListener {
-          swapUnits()
+            swapUnits()
         })
 
         //dropdown work
@@ -81,12 +82,12 @@ class MainActivity : AppCompatActivity() {
 
 
     //swap units
-    private fun swapUnits(){
+    private fun swapUnits() {
         binding.spConvertFrom.setSelection(positionConvertTo)
         binding.spConvertTo.setSelection(positionConvertFrom)
-        var temp=convertFrom
-        convertFrom=convertTo
-        convertTo=temp
+        var temp = convertFrom
+        convertFrom = convertTo
+        convertTo = temp
         calculate()
     }
 }
