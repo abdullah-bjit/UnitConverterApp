@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                 }
             // Do something with spokenText.
             Log.d("voice", spokenText.toString())
-            binding.inputTextET.setText(spokenText.toString())
+            binding.inputTextET?.setText(spokenText.toString())
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //voice input
-        binding.voiceInputFAB.setOnClickListener {
+        binding.voiceInputFAB?.setOnClickListener {
             displaySpeechRecognizer()
         }
     }
