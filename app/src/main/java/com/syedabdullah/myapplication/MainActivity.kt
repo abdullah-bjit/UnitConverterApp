@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.ivConvertArrow.setOnClickListener(View.OnClickListener {
-          swapUnits()
+            swapUnits()
         })
 
         //dropdown work
@@ -76,17 +76,27 @@ class MainActivity : AppCompatActivity() {
             }
         }
         binding.tvResult.text = result.toString()
+
+        val history = History()
+        addHistory(value, result, convertFrom, convertTo)
+        Log.d("History", history.getHistory().toString())
         Log.d("result", result.toString())
     }
 
 
     //swap units
-    private fun swapUnits(){
+    private fun swapUnits() {
         binding.spConvertFrom.setSelection(positionConvertTo)
         binding.spConvertTo.setSelection(positionConvertFrom)
-        var temp=convertFrom
-        convertFrom=convertTo
-        convertTo=temp
+        var temp = convertFrom
+        convertFrom = convertTo
+        convertTo = temp
         calculate()
+    }
+
+    //function that add data to list of History
+    private fun addHistory(value: Double, result: Double, convertFrom: String, convertTo: String) {
+        val history = History()
+        history.addToHistory(value, result, convertFrom, convertTo)
     }
 }
