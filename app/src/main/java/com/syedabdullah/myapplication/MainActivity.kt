@@ -1,7 +1,11 @@
 package com.syedabdullah.myapplication
 
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -14,16 +18,46 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var convertFrom: String
     private lateinit var convertTo: String
-
-    //    private var input: String = null.toString()
     private val key_value = "key_value"
     private val key_result = "key_result"
+    private val SPEECH_REQUEST_CODE = 0
+
+    // Create an intent that can start the Speech Recognizer activity
+    @Suppress("DEPRECATION")
+    private fun displaySpeechRecognizer() {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+            putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
+        }
+        // This starts the activity and populates the intent with the speech text.
+        startActivityForResult(intent, SPEECH_REQUEST_CODE)
+    }
+
+    // This callback is invoked when the Speech Recognizer returns.
+    // This is where you process the intent and extract the speech text from the intent.
+    @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == SPEECH_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val spokenText =
+                data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS).let { results ->
+                    results?.get(0) ?: return
+                }
+            // Do something with spokenText.
+            Log.d("voice", spokenText)
+            binding.inputTextET?.setText(spokenText)
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.spConvertFrom.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 positionConvertFrom = p2
@@ -43,20 +77,20 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-
             }
         }
 
-        //swaping unit
-        binding.ivConvertArrow.setOnClickListener(View.OnClickListener {
-            swapUnits()
-        })
+        binding.ivConvertArrow.setOnClickListener { swapUnits() }
 
         //dropdown work
         binding.calculateButton.setOnClickListener {
             calculate()
         }
 
+        //voice input
+        binding.voiceInputFAB?.setOnClickListener {
+            displaySpeechRecognizer()
+        }
     }
 
     //saveInstanceState functionality
@@ -78,7 +112,7 @@ class MainActivity : AppCompatActivity() {
     //calculate function
     private fun calculate() {
         val value = (binding.teConvertTo.editText?.text.toString()).toDoubleOrNull() ?: return
-        var result: Double
+        val result: Double
         when (convertFrom) {
             "Kilo-Meter" -> {
                 val km = Kilometer()
@@ -100,7 +134,6 @@ class MainActivity : AppCompatActivity() {
         binding.tvResult.text = result.toString()
         Log.d("result", result.toString())
     }
-
 
     //swap units
     private fun swapUnits() {
