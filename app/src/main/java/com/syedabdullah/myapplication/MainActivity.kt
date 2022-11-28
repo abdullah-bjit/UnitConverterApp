@@ -1,7 +1,11 @@
 package com.syedabdullah.myapplication
 
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -14,11 +18,43 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var convertFrom: String
     private lateinit var convertTo: String
+    private val SPEECH_REQUEST_CODE = 0
+
+    // Create an intent that can start the Speech Recognizer activity
+    @Suppress("DEPRECATION")
+    private fun displaySpeechRecognizer() {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+            putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
+        }
+        // This starts the activity and populates the intent with the speech text.
+        startActivityForResult(intent, SPEECH_REQUEST_CODE)
+    }
+
+    // This callback is invoked when the Speech Recognizer returns.
+    // This is where you process the intent and extract the speech text from the intent.
+    @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == SPEECH_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val spokenText =
+                data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS).let { results ->
+                    results?.get(0) ?: return
+                }
+            // Do something with spokenText.
+            Log.d("voice", spokenText)
+            binding.inputTextET?.setText(spokenText)
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.spConvertFrom.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 positionConvertFrom = p2
@@ -38,10 +74,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-
             }
         }
-
         binding.ivConvertArrow.setOnClickListener(View.OnClickListener {
             swapUnits()
         })
@@ -51,12 +85,16 @@ class MainActivity : AppCompatActivity() {
             calculate()
         }
 
+        //voice input
+        binding.voiceInputFAB?.setOnClickListener {
+            displaySpeechRecognizer()
+        }
     }
 
     //calculate function
     private fun calculate() {
         val value = (binding.teConvertTo.editText?.text.toString()).toDoubleOrNull() ?: return
-        var result: Double
+        val result: Double
         when (convertFrom) {
             "Kilo-Meter" -> {
                 val km = Kilometer()
@@ -79,16 +117,16 @@ class MainActivity : AppCompatActivity() {
 
         val history = History()
         addHistory(value, result, convertFrom, convertTo)
+        showHistory()
         Log.d("History", history.getHistory().toString())
         Log.d("result", result.toString())
     }
-
 
     //swap units
     private fun swapUnits() {
         binding.spConvertFrom.setSelection(positionConvertTo)
         binding.spConvertTo.setSelection(positionConvertFrom)
-        var temp = convertFrom
+        val temp = convertFrom
         convertFrom = convertTo
         convertTo = temp
         calculate()
@@ -98,5 +136,16 @@ class MainActivity : AppCompatActivity() {
     private fun addHistory(value: Double, result: Double, convertFrom: String, convertTo: String) {
         val history = History()
         history.addToHistory(value, result, convertFrom, convertTo)
+    }
+
+    //print history
+    private fun showHistory(){
+        val history = History()
+        val lists=history.getHistory()
+        var ans=""
+        for(i in lists){
+            ans+=i+'\n'
+        }
+        binding.tvHistory?.text=ans
     }
 }
