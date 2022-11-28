@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import com.syedabdullah.myapplication.databinding.ActivityMainBinding
+import com.syedabdullah.myapplication.model.*
 
 class MainActivity : AppCompatActivity() {
     private var positionConvertFrom = 0
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.spConvertFrom.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
+        binding.spConvertFrom.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 positionConvertFrom = p2
                 convertFrom = p0?.getItemAtPosition(p2).toString()
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-        binding.spConvertTo.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
+        binding.spConvertTo.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 positionConvertTo = p2
                 convertTo = p0?.getItemAtPosition(p2).toString()
@@ -42,13 +43,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.ivConvertArrow.setOnClickListener(View.OnClickListener {
-            binding.spConvertFrom.setSelection(positionConvertTo)
-            binding.spConvertTo.setSelection(positionConvertFrom)
-            calculate()
+          swapUnits()
         })
 
         //dropdown work
-        binding.calculateButton.setOnClickListener{
+        binding.calculateButton.setOnClickListener {
             calculate()
         }
 
@@ -57,75 +56,37 @@ class MainActivity : AppCompatActivity() {
     //calculate function
     private fun calculate() {
         val value = (binding.teConvertTo.editText?.text.toString()).toDoubleOrNull() ?: return
-        var result=0.0
-        when(convertFrom){
-            "Kilo-Meter"->{
-                val km=Kilometer()
-                result=km.calculate(value,convertTo)
+        var result: Double
+        when (convertFrom) {
+            "Kilo-Meter" -> {
+                val km = Kilometer()
+                result = km.calculate(value, convertTo)
             }
-            "Meter"->{
-                val m=Meter()
-                result=m.calculate(value,convertTo)
+            "Meter" -> {
+                val m = Meter()
+                result = m.calculate(value, convertTo)
             }
-            "Feet"->{
-                val f=Feet()
-                result=f.calculate(value,convertTo)
+            "Feet" -> {
+                val f = Feet()
+                result = f.calculate(value, convertTo)
             }
-            else->{
-                val i=Inch()
-                result=i.calculate(value,convertTo)
+            else -> {
+                val i = Inch()
+                result = i.calculate(value, convertTo)
             }
         }
-        binding.tvResult.text=result.toString()
+        binding.tvResult.text = result.toString()
+        Log.d("result", result.toString())
     }
-}
 
-abstract class Units{
-    abstract fun calculate(value:Double,unit:String):Double
-}
 
-class Kilometer: Units() {
-    override fun calculate(value: Double,unit: String):Double {
-        val result=when(unit){
-            "Meter"->value*1000
-            "Feet"->value*3280.84
-            "Inch"->value*39370.08
-            else->value
-        }
-        return result
-    }
-}
-class Meter: Units() {
-    override fun calculate(value: Double,unit: String): Double {
-        val result=when(unit){
-            "Kilo-Meter"->value*0.001
-            "Feet"->value*3.28084
-            "Inch"->value*39.3701
-            else->value
-        }
-        return result
-    }
-}
-class Feet: Units() {
-    override fun calculate(value: Double, unit: String): Double {
-        val result=when(unit){
-            "Kilo-Meter"->value*0.0003048
-            "Meter"->value*0.3048
-            "Inch"->value*12
-            else->value
-        }
-        return result
-    }
-}
-
-class Inch:Units(){
-    override fun calculate(value: Double, unit: String): Double {
-        val result=when(unit){
-            "Kilo-Meter"->value.div(39370.1)
-            "Meter"->value*0.0254
-            "Feet"->value*0.0833333
-            else->value
-        }
-        return result
+    //swap units
+    private fun swapUnits(){
+        binding.spConvertFrom.setSelection(positionConvertTo)
+        binding.spConvertTo.setSelection(positionConvertFrom)
+        var temp=convertFrom
+        convertFrom=convertTo
+        convertTo=temp
+        calculate()
     }
 }
