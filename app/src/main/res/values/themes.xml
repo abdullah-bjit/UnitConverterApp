@@ -13,4 +13,20 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    // Text Input Layout Style
+
+    <style name="Widget.MaterialComponents.TextInputLayout.FilledBox.Rounded" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="shapeAppearanceOverlay">@style/Rounded_ShapeAppearanceOverlay.MaterialComponents.TextInputLayout</item>
+        <item name="boxStrokeColor">@color/teal_200</item>
+    </style>
+
+    <style name="Rounded_ShapeAppearanceOverlay.MaterialComponents.TextInputLayout" parent="">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">30%</item>
+    </style>
+
+
 </resources>
