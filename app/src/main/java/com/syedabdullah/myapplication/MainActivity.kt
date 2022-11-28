@@ -15,6 +15,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var convertFrom: String
     private lateinit var convertTo: String
 
+    //    private var input: String = null.toString()
+    private val key_value = "key_value"
+    private val key_result = "key_result"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -42,6 +46,7 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+
         //swaping unit
         binding.ivConvertArrow.setOnClickListener(View.OnClickListener {
             swapUnits()
@@ -52,6 +57,22 @@ class MainActivity : AppCompatActivity() {
             calculate()
         }
 
+    }
+
+    //saveInstanceState functionality
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(key_value, binding.teConvertTo.editText?.text.toString())
+        outState.putString(key_result, binding.tvResult.text.toString())
+    }
+
+    // restore saveInstanceState
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        binding.teConvertTo.editText?.setText(
+            savedInstanceState.getString(key_value)
+        )
+        binding.tvResult.text = savedInstanceState.getString(key_result)
     }
 
     //calculate function
