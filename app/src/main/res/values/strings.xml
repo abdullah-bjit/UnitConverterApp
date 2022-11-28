@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Unit Converter</string>
+    <string name="app_title"><u>Unit Converter</u></string>
+    <string name="please_enter_your_input">Please Enter Your Input</string>
     <string name="convert_from">Convert from</string>
     <string name="convert_to">Convert to</string>
     <string name="convert_button">Calculate</string>

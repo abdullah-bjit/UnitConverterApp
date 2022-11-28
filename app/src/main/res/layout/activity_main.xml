@@ -7,13 +7,18 @@
     android:padding="18dp"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/iv_balance_image"
-        android:layout_width="0dp"
-        android:layout_height="180dp"
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_title"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/balance_img"
         />
 
     <TextView
@@ -22,16 +27,55 @@
         android:text="@string/convert_from"
         android:layout_height="wrap_content"
         android:textSize="20sp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_balance_image"/>
-   <Spinner
-       android:id="@+id/sp_convert_from"
-       android:layout_width="match_parent"
-       android:layout_height="50dp"
-       android:spinnerMode="dropdown"
-       android:entries="@array/dropDownOption"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/tv_convert_from"/>
+        app:layout_constraintTop_toBottomOf="@+id/te_convert_to"/>
+
+    <RelativeLayout
+        android:id="@+id/layout_convert_from"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="3dp"
+        android:layout_weight=".28"
+        android:background="@drawable/spinner_background"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_convert_from"
+        >
+
+        <Spinner
+            android:id="@+id/sp_convert_from"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:layout_marginStart="5dp"
+            android:spinnerMode="dropdown"
+            android:entries="@array/dropDownOption"
+            android:popupBackground="@color/teal_200"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_margin="2dp"
+            android:src="@drawable/spinner_down_arrow" />
+
+    </RelativeLayout>
+<!--   <Spinner-->
+<!--       android:id="@+id/sp_convert_from"-->
+<!--       android:layout_width="match_parent"-->
+<!--       android:layout_height="50dp"-->
+<!--       android:spinnerMode="dropdown"-->
+<!--       android:entries="@array/dropDownOption"-->
+<!--       android:backgroundTint="@color/teal_200"-->
+<!--       app:layout_constraintStart_toStartOf="parent"-->
+<!--       app:layout_constraintTop_toBottomOf="@+id/tv_convert_from"/>-->
 
     <ImageView
         android:id="@+id/iv_convert_arrow"
@@ -39,26 +83,78 @@
         android:layout_height="70dp"
         android:src="@drawable/ic_baseline_compare_arrows_24"
         android:rotation="90"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/te_convert_to"/>
+        app:layout_constraintTop_toBottomOf="@id/layout_convert_from"/>
 
-    <Spinner
-        android:id="@+id/sp_convert_to"
+    <TextView
+        android:id="@+id/tv_convert_to"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:spinnerMode="dropdown"
-        android:entries="@array/dropDownOption"
+        android:text="@string/convert_to"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_convert_arrow"/>
+
+    <RelativeLayout
+        android:id="@+id/layout_convert_to"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="3dp"
+        android:layout_weight=".28"
+        android:background="@drawable/spinner_background"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_convert_to"
+        >
+
+        <Spinner
+            android:id="@+id/sp_convert_to"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:layout_marginStart="5dp"
+            android:spinnerMode="dropdown"
+            android:entries="@array/dropDownOption"
+            android:popupBackground="@color/teal_200"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_margin="2dp"
+            android:src="@drawable/spinner_down_arrow" />
+
+    </RelativeLayout>
+
+<!--    <Spinner-->
+<!--        android:id="@+id/sp_convert_to"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:spinnerMode="dropdown"-->
+<!--        android:entries="@array/dropDownOption"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tv_convert_to"/>-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/te_convert_to"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/convert_to"
+        android:hint="@string/please_enter_your_input"
+        android:layout_marginTop="20dp"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/teal_200"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Rounded"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sp_convert_from"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -76,7 +172,7 @@
         android:text="@string/convert_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sp_convert_to" />
+        app:layout_constraintTop_toBottomOf="@id/layout_convert_to" />
 
     <TextView
         android:id="@+id/tv_result"
