@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">" 単位換算"</string>
+    <string name="convert_button">計算する</string>
+    <string name="convert_to">" に "</string>
+    <string name="convert_from">" から"</string>
+    <string name="please_enter_your_input">" 入力してください"</string>
+    <string name="app_title">" <u>単位換算</u>"</string>
+    <string-array name="dropDownOption">
+        <item>キロメートル</item>
+        <item>メーター</item>
+        <item>フィート</item>
+        <item>インチ</item>
+    </string-array>
+</resources>

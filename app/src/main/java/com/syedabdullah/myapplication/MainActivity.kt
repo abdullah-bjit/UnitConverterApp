@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var convertFrom: String
     private lateinit var convertTo: String
+    private val key_value = "key_value"
+    private val key_result = "key_result"
     private val SPEECH_REQUEST_CODE = 0
 
     // Create an intent that can start the Speech Recognizer activity
@@ -51,6 +53,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("ClickableViewAccessibility")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -76,7 +79,9 @@ class MainActivity : AppCompatActivity() {
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
         }
+
         binding.ivConvertArrow.setOnClickListener { swapUnits() }
+
         //dropdown work
         binding.calculateButton.setOnClickListener {
             calculate()
@@ -86,6 +91,22 @@ class MainActivity : AppCompatActivity() {
         binding.voiceInputFAB?.setOnClickListener {
             displaySpeechRecognizer()
         }
+    }
+
+    //saveInstanceState functionality
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(key_value, binding.teConvertTo.editText?.text.toString())
+        outState.putString(key_result, binding.tvResult.text.toString())
+    }
+
+    // restore saveInstanceState
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        binding.teConvertTo.editText?.setText(
+            savedInstanceState.getString(key_value)
+        )
+        binding.tvResult.text = savedInstanceState.getString(key_result)
     }
 
     //calculate function
@@ -118,7 +139,7 @@ class MainActivity : AppCompatActivity() {
     private fun swapUnits() {
         binding.spConvertFrom.setSelection(positionConvertTo)
         binding.spConvertTo.setSelection(positionConvertFrom)
-        val temp = convertFrom
+        var temp = convertFrom
         convertFrom = convertTo
         convertTo = temp
         calculate()
