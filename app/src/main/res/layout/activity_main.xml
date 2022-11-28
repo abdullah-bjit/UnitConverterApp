@@ -114,7 +114,7 @@
             android:layout_marginStart="5dp"
             android:spinnerMode="dropdown"
             android:entries="@array/dropDownOption"
-            android:popupBackground="@color/teal_200"
+            android:popupBackground="@color/nightSecondaryColor"
             />
 
         <ImageView
@@ -131,23 +131,40 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/te_convert_to"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Rounded"
         android:hint="@string/please_enter_your_input"
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintHorizontal_bias="0.0"
         android:layout_marginTop="20dp"
         app:endIconMode="clear_text"
-        app:endIconTint="@color/teal_200"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Rounded"
+        app:endIconTint="#CD810E"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title"
         >
-
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputTextET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintWidth_percent="0.2"
             android:inputType="numberDecimal"
             />
+
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/voiceInputFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+
+        android:backgroundTint="#A8DDAB"
+        android:src="@drawable/ic_baseline_keyboard_voice_24"
+        app:layout_constraintStart_toEndOf="@+id/te_convert_to"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <Button
         android:id="@+id/calculate_button"
