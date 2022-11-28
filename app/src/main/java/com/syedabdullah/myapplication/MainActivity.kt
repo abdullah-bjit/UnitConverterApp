@@ -19,28 +19,37 @@ class MainActivity : AppCompatActivity() {
     private lateinit var convertFrom: String
     private lateinit var convertTo: String
     private val SPEECH_REQUEST_CODE = 0
+
     // Create an intent that can start the Speech Recognizer activity
+    @Suppress("DEPRECATION")
     private fun displaySpeechRecognizer() {
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
-            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
         }
         // This starts the activity and populates the intent with the speech text.
         startActivityForResult(intent, SPEECH_REQUEST_CODE)
     }
+
     // This callback is invoked when the Speech Recognizer returns.
     // This is where you process the intent and extract the speech text from the intent.
+    @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == SPEECH_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val spokenText: String? =
+            val spokenText =
                 data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS).let { results ->
                     results?.get(0) ?: return
                 }
             // Do something with spokenText.
-            Log.d("voice", spokenText.toString())
-            binding.inputTextET?.setText(spokenText.toString())
+            Log.d("voice", spokenText)
+            binding.inputTextET?.setText(spokenText)
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +61,7 @@ class MainActivity : AppCompatActivity() {
                 convertFrom = p0?.getItemAtPosition(p2).toString()
                 Log.d("convert", convertFrom)
             }
+
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
             }
@@ -62,6 +72,7 @@ class MainActivity : AppCompatActivity() {
                 convertTo = p0?.getItemAtPosition(p2).toString()
                 Log.d("convert", convertTo)
             }
+
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
         }
@@ -76,6 +87,7 @@ class MainActivity : AppCompatActivity() {
             displaySpeechRecognizer()
         }
     }
+
     //calculate function
     private fun calculate() {
         val value = (binding.teConvertTo.editText?.text.toString()).toDoubleOrNull() ?: return
@@ -101,13 +113,14 @@ class MainActivity : AppCompatActivity() {
         binding.tvResult.text = result.toString()
         Log.d("result", result.toString())
     }
+
     //swap units
-    private fun swapUnits(){
+    private fun swapUnits() {
         binding.spConvertFrom.setSelection(positionConvertTo)
         binding.spConvertTo.setSelection(positionConvertFrom)
-        val temp=convertFrom
-        convertFrom=convertTo
-        convertTo=temp
+        val temp = convertFrom
+        convertFrom = convertTo
+        convertTo = temp
         calculate()
     }
 }

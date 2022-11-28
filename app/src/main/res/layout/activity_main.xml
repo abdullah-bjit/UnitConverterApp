@@ -114,7 +114,7 @@
             android:layout_marginStart="5dp"
             android:spinnerMode="dropdown"
             android:entries="@array/dropDownOption"
-            android:popupBackground="@color/teal_200"
+            android:popupBackground="@color/nightSecondaryColor"
             />
 
         <ImageView
@@ -139,7 +139,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         android:layout_marginTop="20dp"
         app:endIconMode="clear_text"
-        app:endIconTint="@color/teal_200"
+        app:endIconTint="#CD810E"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title"
         >
