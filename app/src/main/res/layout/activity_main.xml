@@ -12,26 +12,25 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:padding="5dp"
         android:text="@string/app_title"
-        android:textAlignment="center"
         android:textSize="25sp"
+        android:textAlignment="center"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <TextView
         android:id="@+id/tv_convert_from"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="@string/convert_from"
+        android:layout_height="wrap_content"
         android:textSize="20sp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/te_convert_to" />
+        app:layout_constraintTop_toBottomOf="@+id/te_convert_to"/>
 
     <RelativeLayout
         android:id="@+id/layout_convert_from"
@@ -42,7 +41,8 @@
         android:background="@drawable/spinner_background"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_convert_from">
+        app:layout_constraintTop_toBottomOf="@+id/tv_convert_from"
+        >
 
         <Spinner
             android:id="@+id/sp_convert_from"
@@ -50,12 +50,13 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:layout_marginStart="5dp"
             android:background="@android:color/transparent"
-            android:entries="@array/dropDownOption"
             android:gravity="center"
+            android:layout_marginStart="5dp"
+            android:spinnerMode="dropdown"
+            android:entries="@array/dropDownOption"
             android:popupBackground="@color/teal_200"
-            android:spinnerMode="dropdown" />
+            />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -68,7 +69,6 @@
 
     </RelativeLayout>
 
-
     <ImageView
         android:id="@+id/iv_convert_arrow"
         android:layout_width="0dp"
@@ -77,19 +77,19 @@
         android:rotation="90"
         android:layout_marginTop="20dp"
         app:layout_constraintWidth_percent=".2"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_convert_from" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_convert_from"/>
 
     <TextView
         android:id="@+id/tv_convert_to"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="@string/convert_to"
+        android:layout_height="wrap_content"
         android:textSize="20sp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_convert_arrow" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_convert_arrow"/>
 
     <RelativeLayout
         android:id="@+id/layout_convert_to"
@@ -100,7 +100,8 @@
         android:background="@drawable/spinner_background"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_convert_to">
+        app:layout_constraintTop_toBottomOf="@+id/tv_convert_to"
+        >
 
         <Spinner
             android:id="@+id/sp_convert_to"
@@ -108,8 +109,10 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:layout_marginStart="5dp"
             android:background="@android:color/transparent"
+            android:gravity="center"
+            android:layout_marginStart="5dp"
+            android:spinnerMode="dropdown"
             android:entries="@array/dropDownOption"
             android:popupBackground="@color/nightSecondaryColor"
             />
@@ -126,7 +129,6 @@
     </RelativeLayout>
 
 
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/te_convert_to"
         android:layout_width="0dp"
@@ -135,6 +137,8 @@
         android:hint="@string/please_enter_your_input"
         app:layout_constraintWidth_percent="0.8"
         app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="20dp"
+        app:endIconMode="clear_text"
         app:endIconTint="#CD810E"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title"
@@ -155,6 +159,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
 
         android:backgroundTint="#A8DDAB"
         android:src="@drawable/ic_baseline_keyboard_voice_24"
@@ -175,10 +180,11 @@
         android:id="@+id/tv_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/calculate_button"
-        tools:text="Result" />
+        android:textSize="25sp"
+        tools:text="Result"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
