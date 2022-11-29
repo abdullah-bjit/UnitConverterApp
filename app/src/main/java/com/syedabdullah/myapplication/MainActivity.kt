@@ -80,7 +80,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.ivConvertArrow.setOnClickListener { swapUnits() }
+        binding.ivConvertArrow.setOnClickListener(View.OnClickListener {
+            swapUnits()
+        })
+
+
 
         //dropdown work
         binding.calculateButton.setOnClickListener {
@@ -132,6 +136,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
         binding.tvResult.text = result.toString()
+
+        val history = History()
+        addHistory(value, result, convertFrom, convertTo)
+        showHistory()
+        Log.d("History", history.getHistory().toString())
         Log.d("result", result.toString())
     }
 
@@ -143,5 +152,22 @@ class MainActivity : AppCompatActivity() {
         convertFrom = convertTo
         convertTo = temp
         calculate()
+    }
+
+    //function that add data to list of History
+    private fun addHistory(value: Double, result: Double, convertFrom: String, convertTo: String) {
+        val history = History()
+        history.addToHistory(value, result, convertFrom, convertTo)
+    }
+
+    //print history
+    private fun showHistory(){
+        val history = History()
+        val lists=history.getHistory()
+        var ans=""
+        for(i in lists){
+            ans+=i+'\n'
+        }
+        binding.tvHistory?.text=ans
     }
 }
